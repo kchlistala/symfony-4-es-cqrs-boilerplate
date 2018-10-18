@@ -19,7 +19,7 @@ services:
           $commandBus: '@tactician.commandbus.command'
           $eventBus: '@broadway.event_handling.event_bus'
 
-          $eventStore: '@Broadway\EventStore\Dbal\DBALEventStore'
+          $eventStore: '@Broadway\EventStore\ConcurrencyConflictResolvingEventStore'
 
           $eventProducer: '@old_sound_rabbit_mq.events_producer'
 
@@ -55,6 +55,15 @@ services:
           - 'events'
           - 'false'
           - '@broadway.uuid.converter'
+
+    Broadway\EventStore\ConcurrencyConflictResolver\BlacklistConcurrencyConflictResolver:
+        public: false
+
+    Broadway\EventStore\ConcurrencyConflictResolvingEventStore:
+        public: true
+        arguments:
+          - '@Broadway\EventStore\Dbal\DBALEventStore'
+          - '@Broadway\EventStore\ConcurrencyConflictResolver\BlacklistConcurrencyConflictResolver'
 
     ### UI
 

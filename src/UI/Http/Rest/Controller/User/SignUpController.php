@@ -22,7 +22,8 @@ final class SignUpController extends CommandController
      *     methods={"POST"},
      *     requirements={
      *      "uuid": "\d+",
-     *      "email": "\w+"
+     *      "email": "\w+",
+     *      "password": "\w+"
      * })
      *
      * @SWG\Response(
@@ -44,7 +45,8 @@ final class SignUpController extends CommandController
      *     required=true,
      *     schema=@SWG\Schema(type="object",
      *         @SWG\Property(property="uuid", type="string"),
-     *         @SWG\Property(property="email", type="string")
+     *         @SWG\Property(property="email", type="string"),
+     *         @SWG\Property(property="password", type="string")
      *     )
      * )
      *

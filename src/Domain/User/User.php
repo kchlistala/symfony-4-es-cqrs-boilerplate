@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\User;
 
+use App\Domain\User\Event\UserCounterIncreased;
 use App\Domain\User\Event\UserEmailChanged;
 use App\Domain\User\Event\UserSignedIn;
 use App\Domain\User\Event\UserWasCreated;
@@ -29,6 +30,16 @@ class User extends EventSourcedAggregateRoot
     public function changeEmail(Email $email): void
     {
         $this->apply(new UserEmailChanged($this->uuid, $email));
+    }
+
+    public function increaseCounter()
+    {
+        $this->apply(new UserCounterIncreased($this->uuid));
+    }
+
+    protected function applyUserCounterIncreased(UserCounterIncreased $event): void
+    {
+        $this->counter++;
     }
 
     /**
@@ -96,4 +107,7 @@ class User extends EventSourcedAggregateRoot
 
     /** @var HashedPassword */
     private $hashedPassword;
+
+    /** @var int */
+    private $counter = 0;
 }
