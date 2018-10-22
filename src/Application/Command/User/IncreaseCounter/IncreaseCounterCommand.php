@@ -13,7 +13,6 @@ class IncreaseCounterCommand
 
     /**
      * IncreaseCounterCommand constructor.
-     * @param string $userUuid
      */
     public function __construct(string $userUuid)
     {

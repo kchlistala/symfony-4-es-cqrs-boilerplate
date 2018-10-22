@@ -39,7 +39,7 @@ class User extends EventSourcedAggregateRoot
 
     protected function applyUserCounterIncreased(UserCounterIncreased $event): void
     {
-        $this->counter++;
+        ++$this->counter;
     }
 
     /**

@@ -8,7 +8,6 @@ use App\Application\Command\User\IncreaseCounter\IncreaseCounterCommand;
 use App\Domain\User\Auth\SessionInterface;
 use App\Domain\User\Exception\ForbiddenException;
 use App\UI\Http\Rest\Controller\CommandController;
-use Assert\Assertion;
 use League\Tactician\CommandBus;
 use Nelmio\ApiDocBundle\Annotation\Security;
 use Swagger\Annotations as SWG;

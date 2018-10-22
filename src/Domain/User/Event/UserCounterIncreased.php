@@ -1,19 +1,18 @@
 <?php
 
-declare (strict_types=1);
+declare(strict_types=1);
 
 namespace App\Domain\User\Event;
 
 use Assert\Assertion;
+use Broadway\Serializer\Serializable;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
-use Broadway\Serializer\Serializable;
 
 class UserCounterIncreased implements Serializable
 {
     /**
      * UserCounterInreased constructor.
-     * @param UuidInterface $uuid
      */
     public function __construct(UuidInterface $uuid)
     {
@@ -21,9 +20,9 @@ class UserCounterIncreased implements Serializable
     }
 
     /**
-     * @param array $data
-     * @return UserCounterIncreased
      * @throws \Assert\AssertionFailedException
+     *
+     * @return UserCounterIncreased
      */
     public static function deserialize(array $data): self
     {
@@ -35,7 +34,7 @@ class UserCounterIncreased implements Serializable
     public function serialize(): array
     {
         return [
-            'uuid' => $this->uuid
+            'uuid' => $this->uuid,
         ];
     }
 
